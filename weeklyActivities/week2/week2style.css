@@ -36,7 +36,14 @@ td {
 }
 
 .studentnote {
-    color: black;
+    color: rgb(55, 14, 136);
+}
+
+.studentnote a {
+    font-weight: bold;
+}
+
+.studentnote h1 {
     text-decoration: underline;
 }
 
