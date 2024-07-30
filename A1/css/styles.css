@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
+
 header {
     text-align: center;
     background-color: hsl(227, 19%, 34%);
@@ -15,7 +16,6 @@ header h1 {
 
 .linkDivider {
     padding: 25px;
-    
 }
 
 section {
