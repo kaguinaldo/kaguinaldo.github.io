@@ -7,11 +7,6 @@ h1 {
     color: rgb(255, 123, 0);
 }
 
-.studentNote {
-    color: black;
-    text-decoration: underline;
-}
-
 b {
     color: rgb(3, 3, 133);
 }
@@ -28,4 +23,17 @@ table, tr, td {
 
 td {
     padding: 15px;
+}
+
+.studentNote {
+    color: black;
+    text-decoration: underline;
+}
+
+.text {
+    text-align: left;
+}
+
+.text b {
+    color: black;
 }
