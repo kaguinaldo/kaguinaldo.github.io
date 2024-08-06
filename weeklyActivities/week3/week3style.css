@@ -1,0 +1,62 @@
+html {
+    color-scheme: unset;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.studentnote {
+    color: rgb(55, 14, 136);
+
+}
+
+.studentnote h1 {
+    text-decoration: underline;
+}
+
+.studentnote p {
+    font-style: italic;
+    color: rgb(55, 14, 136);
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 5px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h2 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    padding: 5px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 5px;
+}
+
+p {
+    color: blue;
+    padding: 15px;
+}
+
+article {
+    color: red;
+    font-style: italic;
+    text-decoration: underline; 
+    border: solid blue;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+article p {
+    border: dotted red;
+    margin: 10px;
+    padding: 5px;
+}
