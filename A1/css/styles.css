@@ -24,3 +24,26 @@ section {
     border: solid;
     margin: 10px;
 }
+
+summary {
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+    outline: none;
+    border: none;
+    background-color: #ababab;
+    margin: 0px;
+    padding: 5px;
+    font-size: 20px;
+}
+
+details[open] summary, summary:hover {
+    background-color: #666666;
+    color: white;
+}
+
+details p {
+    padding: 15px;
+    margin: 0;
+    background-color:#d1d1d1;
+}
