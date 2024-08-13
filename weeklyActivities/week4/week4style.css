@@ -1,0 +1,62 @@
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin: 5px;
+    border: 1px dashed;
+    text-align: center;
+    gap: 10px;
+}
+
+.grid-box-purple {
+    background-color: purple;
+    color: white;
+    padding: 10px;
+}
+
+.grid-box-yellow {
+    background-color: yellow;
+    color: black;
+    padding: 10px;
+}
+
+.grid-box-lime {
+    background-color: limegreen;
+    color: black;
+    padding: 10px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    min-height: 100px;
+    border: 1px dashed black;
+    gap: 10px;
+    width: 400px;
+    padding: 10px;
+}
+
+.flex-box-lime {
+    background-color: limegreen;
+    color: black;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-box-plum {
+    background-color: plum;
+    color: black;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -3,20 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../reset.css">
     <link rel="stylesheet" href="./css/styles.css">
     <script src="./js/interactive.js"></script>
     <title>Interactive Media Assignment 1</title>
 </head>
 <body>
     <!-- note to self: stylise button since it looks very out of place rn -->
-    <header>
-        <h1>Interactive Media Assignment 1</h1>
-        <a href="../index.html"><button type="button">Back to home</button></a>
-    </header>
+    <div class="grid-container">
+        <div class="home-button">
+            <a href="../index.html"><button type="button">Home</button></a>
+        </div>
+        <!-- fill empty space -->
+        <div style="background-color: hsl(227, 19%, 34%); grid-column:2/-1;">
+        </div>
+        <div class="header">
+            <h1>Interactive Media Assignment 1</h1>
+        </div>
+        
+            <div>
+            <h2 class="">test</h2>
+        </div>
+
+
 
     <!-- found out about details tag from here: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details -->
     <!-- this allows me to create collapsibles without using JS. -->
 
+
+    <!--
     <details>
         <summary>1) What was the first thing you paid attention to when interacting with the experience?</summary>
         <p>something something</p>
@@ -46,7 +61,8 @@
         <summary>6) How does the interactive experience communicate this primary goal?</summary>
         <p>waw</p>
     </details>
-
+-->
+    </div>
 
 </body>
 </html>

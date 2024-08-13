@@ -3,14 +3,48 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-header {
+.grid-container {
+    display: grid;
+    gap: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.header {
     text-align: center;
     background-color: hsl(227, 19%, 34%);
     padding: 15px;
+    grid-column: 1 / -1;
 } 
 
-header h1 {
+.home-button {
+    background-color: hsl(227, 19%, 34%);
+    grid-column: 1;
+    align-self: center;
+    padding: 5px 5px 0px 7.5px;
+}
+
+.home-button button {
+    padding: 2.5px;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    background-color: hsl(224, 7%, 58%);
+}
+
+.chosen-website {
+    
+}
+
+.question {
+
+}
+
+.answer {
+
+}
+
+h1 {
     font-size: 40px;
+    font-weight: bold;
     color:hsl(210, 5%, 93%);
 }
 
