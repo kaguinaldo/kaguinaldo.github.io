@@ -3,6 +3,12 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+h2 {
+    padding: 30px;
+    font-weight: bold;
+    text-decoration: underline;
+}
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3,1fr);
@@ -16,18 +22,21 @@ body {
     background-color: purple;
     color: white;
     padding: 10px;
+    margin: 5px;
 }
 
 .grid-box-yellow {
     background-color: yellow;
     color: black;
     padding: 10px;
+    margin: 5px;
 }
 
 .grid-box-lime {
     background-color: limegreen;
     color: black;
     padding: 10px;
+    margin: 5px;
 }
 
 .flex-container {

@@ -1,14 +1,18 @@
 body {
+    background-color:rgb(53, 59, 69); 
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* css grid to make layouts easier for me + malleable space */
+/* i fully understand css grid more than flexbox */
 .grid-container {
     display: grid;
     gap: 1fr 1fr;
     grid-template-columns: repeat(4, 1fr);
 }
 
+/* the Interactive Media Assignment 1 part */
 .header {
     text-align: center;
     background-color: hsl(227, 19%, 34%);
@@ -16,6 +20,7 @@ body {
     grid-column: 1 / -1;
 } 
 
+/* home button on top left to go back to master page*/
 .home-button {
     background-color: hsl(227, 19%, 34%);
     grid-column: 1;
@@ -27,57 +32,65 @@ body {
     padding: 2.5px;
     font-size: 15px;
     color: rgb(255, 255, 255);
-    background-color: hsl(224, 7%, 58%);
+    background-color: hsl(227, 17%, 44%);
 }
 
+/* the "header" to indicate the chosen website */
 .chosen-website {
-    
+    font-size: 16px;
+    text-align: center;
+    background-color:rgb(243, 241, 252);
+    margin: 10px;
+    padding: 10px;
+    grid-column: 1/-1;
+}
+
+.chosen-website > strong {
+    font-weight: bold;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+/* grid within a grid --> spans the entire row of parent */
+/* this is so i can make a new row plus colour-code slightly */
+.question-container {
+    grid-column: 1/-1;
+    display: grid;
+    gap: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 10px 10px 15px 10px;
+    padding: 5px;
+    background-color:rgb(196, 215, 236);
 }
 
 .question {
-
+    grid-column: 1/4;
+    background-color:rgb(243, 241, 252);
+    padding:5px;
+    font-weight: bold; /* highlight question more*/
+    font-size: 14px;
 }
 
+/* see question-container comment */
+.answer-container {
+    grid-column: 1/-1;
+    display: grid;
+    gap: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 10px 10px 15px 10px;
+    padding: 5px;
+    background-color:rgb(243, 214, 216);
+    /* different background for answer to differentiate */
+}
 .answer {
-
+    grid-column: -1/-4;
+    background-color:rgb(243, 241, 252);
+    padding: 5px;
+    font-size: 14px;
 }
 
 h1 {
     font-size: 40px;
     font-weight: bold;
     color:hsl(210, 5%, 93%);
-}
-
-.linkDivider {
-    padding: 25px;
-}
-
-section {
-    text-align: left;
-    padding: 5px 25px;
-    border: solid;
-    margin: 10px;
-}
-
-summary {
-    width: 100%;
-    cursor: pointer;
-    text-align: left;
-    outline: none;
-    border: none;
-    background-color: #ababab;
-    margin: 0px;
-    padding: 5px;
-    font-size: 20px;
-}
-
-details[open] summary, summary:hover {
-    background-color: #666666;
-    color: white;
-}
-
-details p {
-    padding: 15px;
-    margin: 0;
-    background-color:#d1d1d1;
 }
