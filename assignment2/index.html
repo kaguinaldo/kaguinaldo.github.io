@@ -4,23 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Assignment 2</title>
-    <!-- add the font family of your choice -->
     <link rel="stylesheet" href="../reset.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
+    <!-- removed the navigation since I don't see the need for other pages -->
     <!-- Header Section -->
     <header>
-      <h1>Music to relax to</h1>
+      <h1>Music to relax/study to</h1>
     </header>
 
     <!-- Main Content Section -->
     <main class="container">
+      <!-- information section -->
+      <section class="information">
+        <p>Just some ambient music for all of your relaxation and studying needs.</p>
+      </section>
       <!-- Media Player Section -->
       <div class="media-player">
         <!-- chosen context: music to relax/study to
-        audio is only required, thus the audio tag. -->
+        audio is only required, thus the audio tag. 
+        functionality needed: play/pause, loop, volume, mute.
+        full-screen, fast-forward, and shuffle aren't needed.
+        maybe rewind to the start, but you usually just let the music
+        play while relaxing, so it may not be needed.-->
         <audio src="audio/erokia_ambient-wave-56-msfxp7-78.mp3" id="relaxing-music" controls></audio>
         <div class="custom-controls">
           <button id="play-pause-btn">
@@ -32,8 +40,16 @@
               height="24"
             />
           </button>
-          <!-- adding volume functionality -->
-          
+          <button id="muted-btn">
+            <img
+              id="mute-btn-img"
+              src="https://img.icons8.com/ios-glyphs/30/no-audio--v1.png"
+              alt="Play Button"
+              width="24"
+              height="24"
+            />
+          </button>
+          </button>
           <div class="progress-bar">
             <span id="progress-bar-fill"></span>
           </div>
@@ -50,19 +66,20 @@
             />
           </button>
         </div>
+        <!-- adding volume functionality underneath the progress bar. -->
         <div class="custom-controls-nextrow">
           <button id="decrease-volume">
               <img
-                id="play-pause-img"
+                id="decrease-volume-img"
                 src="https://img.icons8.com/ios-glyphs/30/low-volume.png"
                 alt="Play Button"
                 width="24"
                 height="24"
               />
             </button>
-            <button id="decrease-volume">
+            <button id="increase-volume">
               <img
-                id="play-pause-img"
+                id="increase-volume-img"
                 src="https://img.icons8.com/ios-glyphs/30/high-volume--v1.png"
                 alt="Play Button"
                 width="24"
@@ -73,20 +90,23 @@
       </div>
 
       <!-- Additional Content Section -->
-      <section>
-        <h2>Additional Content</h2>
-        <p>This is where you can showcase any other relevant content.</p>
-        <!-- Add more content as needed -->
+      <section class="settings">
+        <h2>Audio Settings:</h2>
+        <p><strong>Volume:</strong> <span id="volume">100%</span></p>
+        <p><strong>Muted:</strong> <span id="isMuted">No</span></p>
+        <p><strong>Looping:</strong> <span id="isLooping">No</span></p>
       </section>
     </main>
 
     <!-- Footer Section -->
     <footer>
       <p>&copy; 2024 Media Player Website. All rights reserved.</p>
-      <a href="https://icons8.com/icon/59862/play">Play</a> icon by
-      <a href="https://icons8.com">Icons8</a>
-      <a href="https://icons8.com/icon/61012/pause">Pause</a> icon by
+      <a href="https://icons8.com/icon/59862/play">Play</a>,
+      <a href="https://icons8.com/icon/61012/pause">Pause</a>, 
+      <a href="https://icons8.com/icon/91481/repeat">Repeat</a>,
+      <a href="https://icons8.com/icon/91634/low-volume">Decrease Volume</a>,
+      <a href="https://icons8.com/icon/59734/audio">Increase Volume</a> icons all by
       <a href="https://icons8.com">Icons8</a>
     </footer>
-  </body>
+  </body> 
 </html>
