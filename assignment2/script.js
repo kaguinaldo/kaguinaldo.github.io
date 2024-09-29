@@ -16,6 +16,7 @@ const volText = document.querySelector("#volume");
 const loopText = document.querySelector("#isLooping");
 const muteText = document.querySelector("#isMuted");
 
+// remove audio default controls
 audio.removeAttribute('controls');
 
 // set up event listeners
@@ -31,7 +32,6 @@ audio.addEventListener('ended', loopReplay);
 
 function togglePlayPause() {
     console.log("play-pause clicked");
-    
     if (audio.paused || audio.ended) {
         console.log("playing");
         audio.play();
@@ -49,7 +49,7 @@ function updateProgressBar() {
   progressBar.style.width = value + "%";
 }
 
-// volume function; increment by 10%
+// volume functions; increment by 10%
 // volume is in range of 0-1.
 function decreaseVolume() {
     if (audio.volume <= 0) {
@@ -75,7 +75,7 @@ function increaseVolume() {
     }
 }
 
-// loop audio function.
+// loop audio function: sets loop bool to true if false, and vice versa.
 function loopAudio() {
     if (loop) {
         console.log("looping disabled");
@@ -91,6 +91,7 @@ function loopAudio() {
     }
 }
 
+// return to the beginning if looping is true.
 function loopReplay() {
     if (loop) {
         console.log("loop is enabled; going back to beginning.")
@@ -99,6 +100,7 @@ function loopReplay() {
     }
 }
 
+// mute function, using audio's mute DOM property
 function mute() {
     if (muted) {
         console.log("unmuted");
