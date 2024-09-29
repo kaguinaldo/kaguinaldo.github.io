@@ -34,6 +34,8 @@ function updateProgressBar() {
   progressBar.style.width = value + "%";
 }
 
+// volume function; increment by 10
+
 
 // loop audio function.
 function loopAudio() {
