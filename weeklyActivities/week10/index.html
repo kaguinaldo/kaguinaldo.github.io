@@ -15,13 +15,53 @@
     <script src="script.js" defer></script>
   </head>
   <body>
+    <header>
+        <button id="profile-button">My Profile</button>
+        <div id="profile-content">
+            <ul>
+                <li>1st wawa</li>
+                <li>2nd wawa</li>
+                <li>3rd wawa</li>
+            </ul>
+        </div>
+    </header>
     <!-- hover example -->
     <div class="outer">
-        <img src="img/wawa.jpg" id="wawa" 
-        height="300" width="300"></img>
+        <a><img src="img/wawa.jpg" id="wawa" 
+        height="300" width="300"></img></a>
         <div class="inner" id="more-info">
             <p>The Wawa King</p>
         </div>
     </div>
+    <!-- scroll -->
+    <div class="outer-scroll" id="scroll-content">
+        <div class="inner-scroll">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat
+          reprehenderit alias quos itaque modi nobis eaque similique obcaecati
+          accusamus doloribus quam mollitia nam amet inventore voluptate adipisci,
+          blanditiis distinctio! Cum nemo nam laboriosam impedit nobis modi quas
+          vitae accusamus doloribus. accusamus doloribus quam mollitia nam amet
+          inventore voluptate adipisci, blanditiis distinctio! Cum nemo nam
+          laboriosam impedit nobis modi quas vitae accusamus doloribus. accusamus
+          doloribus quam mollitia nam amet inventore voluptate adipisci,
+          blanditiis distinctio! Cum nemo nam laboriosam impedit nobis modi quas
+          vitae accusamus doloribus. accusamus doloribus quam mollitia nam amet
+          inventore voluptate adipisci, blanditiis distinctio! Cum nemo nam
+          laboriosam impedit nobis modi quas vitae accusamus doloribus.
+        </div>
+      </div>
+      <div class="button-container">
+        <button id="hscroll-button">Get horizontal scroll position</button>
+        <span id="hscroll">0</span>
+        <button id="vscroll-button">Get vertical scroll position</button>
+        <span id="vscroll">0</span>
+        <button id="hscroll150-button">Scroll 150px horizontally</button>
+        <button id="vscroll300-button">Scroll 300px vertically</button>
+        <button id="wvscroll-button">Get Window vertical scroll position</button>
+        <span id="wvscroll">0</span>
+      </div>
+    <footer>
+        <p>footer</p>
+    </footer>
   </body>
 </html>
