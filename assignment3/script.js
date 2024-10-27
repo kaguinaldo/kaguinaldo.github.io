@@ -3,7 +3,19 @@ let gridArray = [[], [], [], [], [], [], [], [], [], []];
 let gridContainer = document.querySelector(".grid-container");
 let grid = "";
 
-let brown = "#EADDCA";
+// initialise dragged element.
+let draggedElement = null;
+
+// keep track of previous coordinates of draggable
+var dragX = 1;
+var dragY = 1;
+
+// keep track if draggable has event listener.
+var hasListener = false;
+
+// colours for ease of access
+let brown = "#6F4E37";
+let violet = "#7F00FF";
 
 // automate HTML <div> tags 
 for (let i = 1; i < 11; i++) {
@@ -39,7 +51,28 @@ function paintStraightLine(pointX, pointY, rowOrColumn, otherPoint, colour) {
 }
 
 function paintBackground(colour) {
+    for (let i = 1; i < 11; i++) {
+        for (let j = 1; j < 11; j++) {
+            gridArray[i-1][j-1].style.transition = "background 2s";
+            gridArray[i-1][j-1].style.backgroundColor = colour;
+        }
+    }
+}
+
+// initialise draggable.
+function createDraggable(pointX, pointY, colour) {
+    dragX = pointX;
+    dragY = pointY;
+    hasListener = true;
+    gridArray[pointX-1][pointY-1].style.backgroundColor = colour;
+    gridArray[pointX-1][pointY-1].draggable = true; 
+    gridArray[pointX-1][pointY-1].addEventListener("dragstart", startDrag);
+    gridArray[pointX-1][pointY-1].addEventListener("dragover", endDrag);
     
 }
 
+
+
 paintStraightLine(5, 8, "row", 4, brown);
+
+createDraggable(1,1, "red");
