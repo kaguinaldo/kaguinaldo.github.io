@@ -1,7 +1,8 @@
 // Colours at the top here for ease of access
-let brown = "#6F4E37";
+let brown = "#635043";
 let violet = "#7F00FF";
 let grey = "#3b3835";
+let red = "#820e08";
 
 // Initialise array for grid --> 2D array. Has 10 arrays within the array for rows and column.
 let gridArray = [[], [], [], [], [], [], [], [], [], []];
@@ -11,11 +12,11 @@ let grid = "";
 // initialise 2D arrays for each of the section's coordinates of both draggable element, its colours for each sections,
 // and the target's coordinates and colours.
 // for a point of reference: [0] is row, [1] is column, [2] is colour.
-let draggableSections = [[9, 1, "red"], [], [], [], []];
+let draggableSections = [[9, 1, red], [], [], [], []];
 let targetSections = [[7, 7, grey], [], [], [], []];
 
 // section background colour, and door "dimensions" and its colour for each section.
-let backgroundColourArray = ["black", "white"];
+let backgroundColourArray = ["#1a1410", "white"];
 let doorDimensions = [[5, 10, 6, 8, brown], [], [], [], []];
 
 // declare first section; keeps track on which section this is currently on, starting with 0.
@@ -177,6 +178,7 @@ async function dropped() {
 }
 
 // initialise section 1.
+paintBackground(backgroundColourArray[0]);
 paintRectangle(doorDimensions[0][0], doorDimensions[0][1], doorDimensions[0][2], doorDimensions[0][3], doorDimensions[0][4]);
 createDraggable(draggableSections[0][0], draggableSections[0][1], draggableSections[0][2]);
 specifyValidDrop(targetSections[0][0], targetSections[0][1], targetSections[0][2]);

@@ -14,7 +14,8 @@ html, body {
 }
 
 .grid-container > div {
-    border: 1px grey dashed;
+    /* border is for reference only. */
+    border: 1px rgba(128, 128, 128, 0.258) dashed;
     background-color: black;
     overflow: visible;
 }
