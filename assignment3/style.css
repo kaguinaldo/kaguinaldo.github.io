@@ -1,0 +1,23 @@
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.grid-container-container {
+    height: 100vh;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(10, 10%);
+    height: 100%;
+    width: 100%;
+    grid-template-rows: repeat(10, 10%);
+}
+
+.grid-container > div {
+    border: 1px grey dashed; 
+    padding: 10%;
+    background-color: black;
+}
