@@ -1,9 +1,25 @@
-// Initialise array for grid --> 2D array. Has 10 arrays within the array for rows and columns.
+// Colours at the top here for ease of access
+let brown = "#6F4E37";
+let violet = "#7F00FF";
+let grey = "#3b3835";
+
+// Initialise array for grid --> 2D array. Has 10 arrays within the array for rows and column.
 let gridArray = [[], [], [], [], [], [], [], [], [], []];
 let gridContainer = document.querySelector(".grid-container");
 let grid = "";
 
-// initialise 2D arrays for each of the section's coordinates of both draggable element, its colours, 
+// initialise 2D arrays for each of the section's coordinates of both draggable element, its colours for each sections,
+// and the target's coordinates and colours.
+// for a point of reference: [0] is row, [1] is column, [2] is colour.
+let draggableSections = [[9, 1, "red"], [], [], [], []];
+let targetSections = [[7, 7, grey], [], [], [], []];
+
+// section background colour, and door "dimensions" and its colour for each section.
+let backgroundColourArray = ["black", "white"];
+let doorDimensions = [[5, 10, 6, 8, brown], [], [], [], []];
+
+// declare first section; keeps track on which section this is currently on, starting with 0.
+let currSection = 0;
 
 // initialise dragged element.
 let draggedElement = null;
@@ -26,10 +42,6 @@ var targetX = 1;
 var targetY = 1;
 var hasListenerTarget = false;
 
-// colours for ease of access
-let brown = "#6F4E37";
-let violet = "#7F00FF";
-
 // automate HTML <div> tags 
 for (let i = 1; i < 11; i++) {
     for (let j = 1; j < 11; j++) {
@@ -45,6 +57,7 @@ gridContainer.innerHTML = grid;
 for (let i = 1; i < 11; i++) {
     for (let j = 1; j < 11; j++) {
         gridArray[i-1][j-1] = document.querySelector(`#x${i}y${j}`);
+        gridArray[i-1][j-1].style.transition = "background 1.5s";
         console.log (gridArray[i-1][j-1]);
     }
 }
@@ -66,10 +79,24 @@ function paintStraightLine(pointX, pointY, rowOrColumn, otherPoint, colour) {
     }
 }
 
+// paints a rectangle of grid.
+function paintRectangle(pointX1, pointX2, pointY1, pointY2, colour, transition) {
+    let repeatY = pointY1;
+    for (pointX1; pointX1 <= pointX2; pointX1++) {
+        console.log(pointX1);
+        for (pointY1; pointY1 <= pointY2; pointY1++) {
+            gridArray[pointX1-1][pointY1-1].style.backgroundColor = colour;
+            console.log(pointX1, pointY1);
+        }
+        pointY1 = repeatY;
+    }
+}
+
+// changes background of the whole screen.
 function paintBackground(colour) {
+    currBGColour = colour;
     for (let i = 1; i < 11; i++) {
         for (let j = 1; j < 11; j++) {
-            gridArray[i-1][j-1].style.transition = "background 2s";
             gridArray[i-1][j-1].style.backgroundColor = colour;
         }
     }
@@ -84,7 +111,6 @@ function createDraggable(pointX, pointY, colour) {
     gridArray[pointX-1][pointY-1].style.backgroundColor = colour;
     gridArray[pointX-1][pointY-1].draggable = true; 
     gridArray[pointX-1][pointY-1].addEventListener("dragstart", startDrag);
-
 }
 
 // initialise drag when user drags it.
@@ -94,20 +120,29 @@ function startDrag() {
     console.log(draggedElement);
 }
 
-function specifyValidDrop(pointX, pointY) {
+function specifyValidDrop(pointX, pointY, colour) {
     targetX = pointX;
     targetY = pointY;
     hasListenerTarget = true;
+    gridArray[pointX-1][pointY-1].style.backgroundColor = colour;
     gridArray[pointX-1][pointY-1].addEventListener("dragover", endDrag);
     gridArray[pointX-1][pointY-1].addEventListener("drop", dropped);
 }
 
+// enables the drop target to be valid.
 function endDrag(event) {
     event.preventDefault();
     console.log("valid drop target");
 }
 
-function dropped() {
+// delay between transitions.
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// function handles what happens when the element gets dropped.
+// made the function asynchronous in order to use the "await" expression for delays between transition of next section.
+async function dropped() {
     if (draggedElement) {
         // if dragged over, firstly change colour of the valid target.
         gridArray[targetX-1][targetY-1].style.backgroundColor = currDragColor;
@@ -121,6 +156,7 @@ function dropped() {
             gridArray[dragX-1][dragY-1].removeEventListener("dragstart", startDrag);
             gridArray[dragX-1][dragY-1].draggable = false; 
             hasListener = false;
+            draggedElement = null;
             console.log("draggable event listener removed.");
         }
         if (hasListenerTarget) {
@@ -129,14 +165,18 @@ function dropped() {
             hasListenerTarget = false;
             console.log("drop target event listener removed.");
         }
-
-        // then, next section code. 
+        // delay for a second.
+        await delay(1000);
+        // then change the door's colours to the next background colour.
+        paintRectangle(doorDimensions[0][0], doorDimensions[0][1], doorDimensions[0][2], doorDimensions[0][3], backgroundColourArray[1]);
+        // delay once again.
+        await delay (1500)
+        // then, next section code.
+        paintBackground(backgroundColourArray[1]);
     }
 }
 
-
-paintStraightLine(5, 8, "row", 4, brown);
-
-createDraggable(1, 2, "red");
-
-specifyValidDrop(5, 5);
+// initialise section 1.
+paintRectangle(doorDimensions[0][0], doorDimensions[0][1], doorDimensions[0][2], doorDimensions[0][3], doorDimensions[0][4]);
+createDraggable(draggableSections[0][0], draggableSections[0][1], draggableSections[0][2]);
+specifyValidDrop(targetSections[0][0], targetSections[0][1], targetSections[0][2]);
