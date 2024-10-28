@@ -2,7 +2,7 @@
 let brown = "#635043";
 let violet = "#7F00FF";
 let grey = "#3b3835";
-let red = "#820e08";
+let red = "#eb3636";
 
 // Initialise array for grid --> 2D array. Has 10 arrays within the array for rows and column.
 let gridArray = [[], [], [], [], [], [], [], [], [], []];
@@ -12,12 +12,28 @@ let grid = "";
 // initialise 2D arrays for each of the section's coordinates of both draggable element, its colours for each sections,
 // and the target's coordinates and colours.
 // for a point of reference: [0] is row, [1] is column, [2] is colour.
-let draggableSections = [[9, 1, red], [], [], [], []];
-let targetSections = [[7, 7, grey], [], [], [], []];
+let draggableSections = [[9, 1, violet], [10, 4, "#25ba97"], [1, 7, "#ded13c"], [10, 10, red], [6, 9, "#e1e1e3"]];
+let targetSections = [[7, 7, grey], [6, 8, "#85998f"], [8, 2, "#adaa86"], [5, 4, "#b58686"], [2, 2, "#8c8c91"]];
 
 // section background colour, and door "dimensions" and its colour for each section.
-let backgroundColourArray = ["#1a1410", "white"];
-let doorDimensions = [[5, 10, 6, 8, brown], [], [], [], []];
+// 6 elements in BGColour due to it being the last one. 
+let backgroundColourArray = ["#1a1410", "#a1a8d1", "#1a7345", "#453821", "#1c1b1b", "white"];
+let doorDimensions = [[5, 10, 6, 8, brown], [2, 10, 8, 10, "#3e453b"], [7, 10, 1, 3, "#333628"], [3, 10, 3, 8, "#7a6c68"], 
+    [1, 10, 1, 7, "#616060"]];
+
+// initialise text box's contents and coordinates.
+let textSectionContent = [ [
+    `<p>Waking up, there is only a door and a violet key...</p>`,
+    `<p>Perhaps dragging it to the hole would open it.</p>
+    `],
+    `<p>Onto the next room... Seems that it's the same deal.</p>`,
+    `<p>A bit small, but you can still crawl through it.</p>`,
+    `<p>Rather gigantic, but you wouldn't let that stop you.</p>`,
+    `<p>The final door, then you shall earn your freedom!</p>`,
+    `<p>Congratulations -- You are now free.</p>`
+];
+let textSectionCoord = [[1, 4, 1, 6, "white"], [4, 2, null, null, "black"], [5, 1, null, null, "white"], [1, 7, null, null, "white"], 
+    [3, 9, null, null, "white"], [5, 5, null, null, "black"]];
 
 // declare first section; keeps track on which section this is currently on, starting with 0.
 let currSection = 0;
@@ -63,23 +79,6 @@ for (let i = 1; i < 11; i++) {
     }
 }
 
-// simple function to paint a straight line from one point to another. 
-function paintStraightLine(pointX, pointY, rowOrColumn, otherPoint, colour) {
- 
-    for (pointX; pointX <= pointY; pointX++) {
-        if (rowOrColumn == "row") { // row gets painted from (x, y1) to (x, y2)
-            gridArray[otherPoint-1][pointX-1].style.backgroundColor = colour;
-        }
-        else if (rowOrColumn == "column") { // column gets painted from (x1, y) to (x2, y)
-            gridArray[pointX-1][otherPoint-1].style.backgroundColor = colour;
-        }
-        else { // in case that the rowOrColumn has a typo, or it somehow doesn't work. this will exit the loop.
-            console.log("row/column undefined. perhaps a typo in the code.");
-            break;
-        }
-    }
-}
-
 // paints a rectangle of grid.
 function paintRectangle(pointX1, pointX2, pointY1, pointY2, colour, transition) {
     let repeatY = pointY1;
@@ -89,7 +88,7 @@ function paintRectangle(pointX1, pointX2, pointY1, pointY2, colour, transition) 
             gridArray[pointX1-1][pointY1-1].style.backgroundColor = colour;
             console.log(pointX1, pointY1);
         }
-        pointY1 = repeatY;
+        pointY1 = repeatY; // so that it goes back to the listed pointY per row.
     }
 }
 
@@ -101,6 +100,16 @@ function paintBackground(colour) {
             gridArray[i-1][j-1].style.backgroundColor = colour;
         }
     }
+}
+
+function applyText(x, y, text, colour) {
+    gridContainer.style.color = colour;
+    gridArray[x-1][y-1].innerHTML = text;
+    
+}
+
+function removeText(x, y) {
+    gridArray[x-1][y-1].innerHTML = "";
 }
 
 // initialise draggable.
@@ -121,6 +130,7 @@ function startDrag() {
     console.log(draggedElement);
 }
 
+// allows a cell to become a valid drop target.
 function specifyValidDrop(pointX, pointY, colour) {
     targetX = pointX;
     targetY = pointY;
@@ -166,14 +176,42 @@ async function dropped() {
             hasListenerTarget = false;
             console.log("drop target event listener removed.");
         }
+        
+        // remove current text.
+        removeText(textSectionCoord[currSection][0], textSectionCoord[currSection][1]);
+        if (textSectionCoord[currSection][2] != null) { 
+            removeText(textSectionCoord[currSection][2], textSectionCoord[currSection][3]);
+        }
         // delay for a second.
         await delay(1000);
         // then change the door's colours to the next background colour.
-        paintRectangle(doorDimensions[0][0], doorDimensions[0][1], doorDimensions[0][2], doorDimensions[0][3], backgroundColourArray[1]);
-        // delay once again.
-        await delay (1500)
-        // then, next section code.
-        paintBackground(backgroundColourArray[1]);
+        paintRectangle(doorDimensions[currSection][0], doorDimensions[currSection][1], 
+            doorDimensions[currSection][2], doorDimensions[currSection][3], backgroundColourArray[currSection + 1]);
+        // delay once again. increment curr section number in the meantime.
+        currSection += 1;
+        // check if section is NOT the last:
+        if (currSection < 5) {
+            await delay(1500);
+            // then, next section code.
+            paintBackground(backgroundColourArray[currSection]);
+            // delay a tiny bit.
+            await delay(2000);
+            paintRectangle(doorDimensions[currSection][0], doorDimensions[currSection][1], 
+            doorDimensions[currSection][2], doorDimensions[currSection][3], doorDimensions[currSection][4]);
+            createDraggable(draggableSections[currSection][0], draggableSections[currSection][1], draggableSections[currSection][2]);
+            specifyValidDrop(targetSections[currSection][0], targetSections[currSection][1], targetSections[currSection][2]);
+            // delay a tiny bit for text to appear.
+            await delay(1200);
+            applyText(textSectionCoord[currSection][0], textSectionCoord[currSection][1], 
+                textSectionContent[currSection], textSectionCoord[currSection][4]);
+        }
+        else {
+            await delay(1500);
+            paintBackground(backgroundColourArray[currSection]);
+            await delay(1200);
+            applyText(textSectionCoord[currSection][0], textSectionCoord[currSection][1], 
+                textSectionContent[currSection], textSectionCoord[currSection][4]);            
+        }
     }
 }
 
@@ -182,3 +220,5 @@ paintBackground(backgroundColourArray[0]);
 paintRectangle(doorDimensions[0][0], doorDimensions[0][1], doorDimensions[0][2], doorDimensions[0][3], doorDimensions[0][4]);
 createDraggable(draggableSections[0][0], draggableSections[0][1], draggableSections[0][2]);
 specifyValidDrop(targetSections[0][0], targetSections[0][1], targetSections[0][2]);
+applyText(textSectionCoord[0][0], textSectionCoord[0][1], textSectionContent[0][0], textSectionCoord[0][4]);
+applyText(textSectionCoord[0][2], textSectionCoord[0][3], textSectionContent[0][1], textSectionCoord[0][4]);

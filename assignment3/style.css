@@ -11,6 +11,7 @@ html, body {
     height: 100%;
     width: 100%;
     grid-template-rows: repeat(10, 1fr);
+    min-width: none;
 }
 
 .grid-container > div {
@@ -18,4 +19,8 @@ html, body {
     border: 1px rgba(128, 128, 128, 0.258) dashed;
     background-color: black;
     overflow: visible;
+    overflow-y: scroll;
+    max-width: 10vw;
+    font-size: 16px;
+    padding: 3px;
 }
