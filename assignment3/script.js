@@ -102,6 +102,7 @@ function paintBackground(colour) {
     }
 }
 
+// functions that make the text appear and disappear.
 function applyText(x, y, text, colour) {
     gridContainer.style.color = colour;
     gridArray[x-1][y-1].innerHTML = text;
@@ -151,7 +152,7 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// function handles what happens when the element gets dropped.
+// function handles what happens when the element gets dropped --> moving to next section.
 // made the function asynchronous in order to use the "await" expression for delays between transition of next section.
 async function dropped() {
     if (draggedElement) {
@@ -205,7 +206,7 @@ async function dropped() {
             applyText(textSectionCoord[currSection][0], textSectionCoord[currSection][1], 
                 textSectionContent[currSection], textSectionCoord[currSection][4]);
         }
-        else {
+        else { // last section.
             await delay(1500);
             paintBackground(backgroundColourArray[currSection]);
             await delay(1200);

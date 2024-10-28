@@ -15,11 +15,11 @@ html, body {
 }
 
 .grid-container > div {
-    /* border is for reference only. */
-    border: 1px rgba(128, 128, 128, 0.258) dashed;
+    /* border is for reference only. 
+    border: 1px rgba(128, 128, 128, 0.258) dashed; */
     background-color: black;
     overflow: visible;
-    overflow-y: scroll;
+    overflow-y: scroll; /* in case the "boxes" are too short to display. overflow: visible does not work unfortunately. */
     max-width: 10vw;
     font-size: 16px;
     padding: 3px;
