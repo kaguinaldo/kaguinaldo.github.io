@@ -1,0 +1,26 @@
+/* importing font styles */
+@font-face {
+    font-family: "Inknut Antiqua";
+    src: url("../fonts/InknutAntiqua-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Aptos";
+    src: url("../fonts/Aptos.ttf");
+}
+
+body {
+    font-family: "Aptos";
+    background-color: rgb(18, 18, 20);
+}
+
+h1 {
+    font-family: "Inknut Antiqua";
+}
+
+#whale {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background-color: white;
+}
